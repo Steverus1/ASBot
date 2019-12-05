@@ -43,5 +43,5 @@ client.on('message',async message => {
     }
 })
 
-loadCommands(["command.js", "status.js","subscribe.js","set.js","send.js", "stream.js"]);
+loadCommands(["command.js", "status.js","subscribe.js","set.js","send.js", "stream.js","rank.js","fixstream.js"]);
 client.login(token);

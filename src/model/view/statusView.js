@@ -3,9 +3,9 @@ const numeral = require('numeral');
 const moment = require('moment');
 
 class StatusView extends Table {
-	constructor(data,current,rmax,stream) {
+	constructor(data,current,rmax,stream,fullData) {
 		super(data);
-		this.formatter = v => "string"===typeof v ? v : numeral(v).format();
+		this.formatter = v => "string"===typeof v ? v : v;
 		this.setHeader(["Player", "Metal", "Gas", "Crystal", "Arrival"]);
 		let inTransit = {
 			metal: this.sumTotal("Metal"),
@@ -37,7 +37,8 @@ class StatusView extends Table {
 			numeral(current.g).format(),
 			numeral(current.c).format(),
 			"Max: "+numeral(rmax).format(),
-        ]);
+		]);
+		this.appendBottomRow(fullData);
 		/*this.appendBottomRow([
 			"AS free",
 			numeral(current.max - expected.metal).format(),
