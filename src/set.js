@@ -16,15 +16,12 @@ class Set extends BaseCommand {
         this.shortDescription = 'set data'
         this.longDescription = [
             "Use this to set resources on the structure",
-            'example "$set 15 20 30k 100k" will put the stock at 15 metal 20 gas and 30 0000 cristal',
+            'example "$set 15 20 30k 100k" will put the stock at 15 metal 20 gas and 30 0000 crystal',
             "and the max at of each at 100 000"
         ]
     
         this.execute=execute
     }
-
-
-
 }
 
 module.exports = Set;

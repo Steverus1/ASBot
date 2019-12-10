@@ -89,6 +89,8 @@ class Alliance extends Structure{
     fixStream(r){
         if(!("0" in this.state.players)){
             this.state.players["0"] = {name: "unaccounted" ,r:{m:0,g:0,c:0}}
+        }
+        if(!("0" in this.state.streams)){
             this.state.streams["0"] = {m:0,g:0,c:0}
         }
         let rTotal = this.getTotalStream()
@@ -170,7 +172,7 @@ class Alliance extends Structure{
     getTransitData(){
         let tmp =  this.state.freights.map(it => it.data).slice()
         for (let i in tmp){
-            tmp[i][0] = this.state.players[tmp[i][0]].name
+            tmp[i][0] = this.state.players[tmp[i].playerId]
         }
         return tmp
     }

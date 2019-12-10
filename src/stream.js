@@ -15,7 +15,7 @@ class Stream extends BaseCommand {
         this.shortDescription = 'use streams'
         this.longDescription = [
             "Use this to send resources on the structure",
-            'example "$stream 15 20 2k" will stream 15 metal/hour and 2 000 cristal/hour'
+            'example "$stream 15 20 2k" will stream 15 metal/hour 20 gas/h and 2 000 crystal/hour'
         ]
         this.execute=execute
     }
