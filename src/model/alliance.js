@@ -101,15 +101,15 @@ class Alliance extends Structure{
         this.state.streams["0"] = {m:r.m-rTotal.m, g:r.g-rTotal.g,c:r.c-rTotal.c}
     }
 
-    addTransit(playerID, playerName,r, duration){
-        if(!(playerID in this.state.players)){
+    addTransit(_playerID, playerName,r, duration){
+        if(!(_playerID in this.state.players)){
             console.log("=== init player ===")
-            this.state.players[playerID] = {name:playerName,r:{m:0,g:0,c:0}}
+            this.state.players[_playerID] = {name:playerName,r:{m:0,g:0,c:0}}
         }
         this.state.freights.push({
             time:moment(),
-            playerId:playerID,
-            data:[playerID, r.m, r.g, r.c, duration]
+            playerId:_playerID,
+            data:[_playerID, r.m, r.g, r.c, duration]
         })
     }
 
@@ -163,18 +163,20 @@ class Alliance extends Structure{
         let data = []
         for(let [key, value] of Object.entries(this.state.players)){
             if(key != "0") {
-                data.push([value.name, value.r.m, value.r.g, value.r.c,"0"])
+                data.push([value.name, value.r.m, value.r.g, value.r.c,value.r.m + value.r.g + value.r.c])
             }
         }
-        return data.sort((a,b)=>a[1]+a[2]+a[3]-b[1]+b[2]+b[3]).slice(0,10)
+        return data.sort((a,b)=> -((a[1]+a[2]+a[3])-(b[1]+b[2]+b[3]))).slice(0,10)
     }
 
     getTransitData(){
-        let tmp =  this.state.freights.map(it => it.data).slice()
+        let tmp =  this.state.freights.slice()
         for (let i in tmp){
-            tmp[i][0] = this.state.players[tmp[i].playerId]
+			console.log(tmp[i].playerId)
+			console.log(this.state.players[tmp[i].playerId])
+            tmp[i].data[0] = this.state.players[tmp[i].playerId].name
         }
-        return tmp
+        return tmp.map(it => it.data)
     }
 
     toString(){

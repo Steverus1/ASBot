@@ -1,12 +1,12 @@
-const Table = require('./Table');
+const RankTable = require('./RankTable');
 const numeral = require('numeral');
 const moment = require('moment');
 
-class RankView extends Table {
+class RankView extends RankTable {
 	constructor(data) {
 		super(data);
-		this.formatter = v => "string"===typeof v ? v : numeral(v).format();
-		this.setHeader(["Player", "Metal", "Gas", "Crystal","NA"]);
+		this.formatter = v => "string"===typeof v ? v : numeral(v/1000).format() +"k";
+		this.setHeader(["Player", "Metal", "Gas", "Crystal","Total"]);
 	}
 }
 
